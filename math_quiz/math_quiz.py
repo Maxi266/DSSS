@@ -8,21 +8,21 @@ def __getRandomInteger(min, max):
     return random.randint(min, max)
 
 
-def __getRandomSign():
+def __getRandomOperator():
     """
-    __getRandomSign: Returns a random sign to determine wich function to use in the math game
+    __getRandomOperator: Returns a random sign to determine wich function to use in the math game
     """
     return random.choice(['+', '-', '*'])
 
 
-def __getMathOperation(var1, var2, sign):
+def __getMathOperation(var1, var2, operator):
     """
     getMathOperation: Performs a math operation based on a given Sign and two variables
     Returns the Operation as a String and the answer as an int
     """
-    problem = f"{var1} {sign} {var2}"
-    if sign == '-': answer = var1 - var2
-    elif sign == '+': answer = var1 + var2
+    problem = f"{var1} {operator} {var2}"
+    if operator == '-': answer = var1 - var2
+    elif operator == '+': answer = var1 + var2
     else: answer = var1 * var2
     return problem, answer
 
@@ -40,9 +40,9 @@ def math_quiz(rounds):
         #Get all needed variables to form a simple Math proböem
         var1 = __getRandomInteger(1, 10)
         var2 = __getRandomInteger(1, 5)
-        sign = __getRandomSign()
+        operator = __getRandomOperator()
 
-        problem, answer = __getMathOperation(var1, var2, sign)
+        problem, answer = __getMathOperation(var1, var2, operator)
         #Display Question as long as there is no valid user input
         while True:
             print(f"\nQuestion {current_Round+13}/{rounds}")
