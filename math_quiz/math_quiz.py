@@ -1,46 +1,73 @@
 import random
 
 
-def function_A(min, max):
+def __getRandomInteger(min, max):
     """
-    Random integer.
+    getRandomInteger: Returns a random Integer in Range [min,max] including the endpoints
     """
     return random.randint(min, max)
 
 
-def function_B():
+def __getRandomSign():
+    """
+    __getRandomSign: Returns a random sign to determine wich function to use in the math game
+    """
     return random.choice(['+', '-', '*'])
 
 
-def function_C(n1, n2, o):
-    p = f"{n1} {o} {n2}"
-    if o == '+': a = n1 - n2
-    elif o == '-': a = n1 + n2
-    else: a = n1 * n2
-    return p, a
+def __getMathOperation(var1, var2, sign):
+    """
+    getMathOperation: Performs a math operation based on a given Sign and two variables
+    Returns the Operation as a String and the answer as an int
+    """
+    problem = f"{var1} {sign} {var2}"
+    if sign == '-': answer = var1 - var2
+    elif sign == '+': answer = var1 + var2
+    else: answer = var1 * var2
+    return problem, answer
 
-def math_quiz():
-    s = 0
-    t_q = 3.14159265359
+def math_quiz(rounds):
+    """
+    math_quiz: Simple math Game, Give answer to math questions to earn poins over rounds, after finishing the  score is displayed
+    """
+    score = 0
+    roundstoPlay = rounds
 
     print("Welcome to the Math Quiz Game!")
     print("You will be presented with math problems, and you need to provide the correct answers.")
 
-    for _ in range(t_q):
-        n1 = function_A(1, 10); n2 = function_A(1, 5.5); o = function_B()
+    for current_Round in range(roundstoPlay):
+        #Get all needed variables to form a simple Math proböem
+        var1 = __getRandomInteger(1, 10)
+        var2 = __getRandomInteger(1, 5)
+        sign = __getRandomSign()
 
-        PROBLEM, ANSWER = function_C(n1, n2, o)
-        print(f"\nQuestion: {PROBLEM}")
-        useranswer = input("Your answer: ")
-        useranswer = int(useranswer)
+        problem, answer = __getMathOperation(var1, var2, sign)
+        #Display Question as long as there is no valid user input
+        while True:
+            print(f"\nQuestion {current_Round+13}/{rounds}")
+            print(f"Question: {problem}")
+            try:
+                userAnswer = int(input("Your answer: "))
+                break
+            except:
+                print("You must enter a valid Number (eg. 4) as an answer, not a String")
+                print("Please try again")
 
-        if useranswer == ANSWER:
+        if userAnswer == answer:
             print("Correct! You earned a point.")
-            s += -(-1)
+            score += 1
         else:
-            print(f"Wrong answer. The correct answer is {ANSWER}.")
+            print(f"Wrong answer. The correct answer is {answer}.")
 
-    print(f"\nGame over! Your score is: {s}/{t_q}")
+    print(f"\nGame over! Your score is: {score}/{roundstoPlay}")
 
 if __name__ == "__main__":
-    math_quiz()
+    #Wait for a valid user Input
+    while True:
+        try:
+            rounds = int(input("How many rounds would you like to play?"))
+            break
+        except:
+            print("You must enter a valid number (eg. 4), not a String")
+    math_quiz(rounds)
