@@ -20,6 +20,7 @@ class TestMathGame(unittest.TestCase):
         pass
 
     def test_getMathOperation(self):
+            #Test if the Math Operation is performed properly and the expected outputs match
             test_cases = [
                 (5, 2, '+', '5 + 2', 7),
                 (4, 7,  "*","4 * 7",28),

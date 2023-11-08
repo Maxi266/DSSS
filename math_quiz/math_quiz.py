@@ -10,14 +10,14 @@ def getRandomInteger(min, max):
 
 def getRandomOperator():
     """
-    __getRandomOperator: Returns a random sign to determine wich function to use in the math game
+    getRandomOperator: Returns a random operator to determine wich function to use in the math game
     """
     return random.choice(['+', '-', '*'])
 
 
 def getMathOperation(var1, var2, operator):
     """
-    getMathOperation: Performs a math operation based on a given Sign and two variables
+    getMathOperation: Performs a math operation based on a given operator and two variables
     Returns the Operation as a String and the answer as an int
     """
     problem = f"{var1} {operator} {var2}"
