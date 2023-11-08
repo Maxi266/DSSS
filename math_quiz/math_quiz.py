@@ -26,7 +26,7 @@ def getMathOperation(var1, var2, operator):
     else: answer = var1 * var2
     return problem, answer
 
-def math_quiz(rounds):
+def mathQuiz(rounds):
     """
     math_quiz: Simple math Game, Give answer to math questions to earn poins over rounds, after finishing the  score is displayed
     """
@@ -70,4 +70,4 @@ if __name__ == "__main__":
             break
         except:
             print("You must enter a valid number (eg. 4), not a String")
-    math_quiz(rounds)
+    mathQuiz(rounds)
